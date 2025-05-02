@@ -79,15 +79,22 @@ const RegisterPage = () => {
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     try {
-      await axios.post("https://fikra-market.vercel.app/api/register", data, {
+      const response = await axios.post("https://fikra-market.vercel.app/api/register", data, {
         headers: {
           "Content-Type": "application/json",
         },
       });
+  
+      // إذا كانت الاستجابة تحتوي على رسالة تفيد بوجود البريد الإلكتروني
+      if (response.data && response.data.error === "email_exists") {
+        throw new Error(content[language].emailExistsError);
+      }
+  
       setSubmitSuccess(true);
       reset();
     } catch (error) {
       console.error("Submission error:", error);
+      alert(error.message); // يمكنك استبدال هذا بمكون مخصص لعرض الأخطاء
     } finally {
       setIsSubmitting(false);
     }
