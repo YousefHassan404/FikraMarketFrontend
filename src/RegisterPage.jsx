@@ -307,13 +307,185 @@
 
 
 
+// import React, { useState } from "react";
+// import { useForm } from "react-hook-form";
+// import axios from "axios";
+// import { useLanguage } from "./Context/userContext";
+// import Button from "./components/Button";
+// import { toast } from "react-toastify"; // استيراد مكتبة التوست
+// import "react-toastify/dist/ReactToastify.css"; // استيراد استايلات التوست
+
+// const RegisterPage = () => {
+//   const { language, toggleLanguage } = useLanguage();
+//   const [isSubmitting, setIsSubmitting] = useState(false);
+//   const [submitSuccess, setSubmitSuccess] = useState(false);
+//   const {
+//     register,
+//     handleSubmit,
+//     formState: { errors },
+//     reset,
+//   } = useForm();
+
+//   const content = {
+//     ar: {
+//       title: "سجل للوصول المبكر إلى Fikra Market",
+//       description:
+//         "كن من أوائل المستخدمين الذين يجربون منصتنا الرائدة لتبادل الأفكار الإبداعية",
+//       fullName: "الاسم الكامل",
+//       email: "البريد الإلكتروني",
+//       userType: "نوع المستخدم",
+//       userTypes: {
+//         investor: "مستثمر",
+//         idea_owner: "صاحب فكرة",
+//         general: "مهتم عام",
+//       },
+//       ideaCategory: "فئة الفكرة (اختياري)",
+//       categories: {
+//         entrepreneurship: "ريادة الأعمال",
+//         tech: "التكنولوجيا",
+//         education: "التعليم",
+//         environment: "البيئة",
+//         other: "أخرى",
+//       },
+//       message: "رسالة (اختياري)",
+//       submit: "إرسال الطلب",
+//       languageButton: "English",
+//       successMessage: "شكراً لتسجيلك! سنتواصل معك قريباً.",
+//       validation: {
+//         required: "هذا الحقل مطلوب",
+//         email: "البريد الإلكتروني غير صحيح",
+//       },
+//       emailExistsError: "البريد الإلكتروني مسجل بالفعل! يرجى استخدام بريد آخر.", // رسالة الخطأ الخاصة بالبريد الإلكتروني
+//     },
+//     en: {
+//       title: "Register for Early Access to Fikra Market",
+//       description:
+//         "Be among the first to experience our groundbreaking platform for creative idea exchange",
+//       fullName: "Full Name",
+//       email: "Email Address",
+//       userType: "User Type",
+//       userTypes: {
+//         investor: "Investor",
+//         idea_owner: "Idea Owner",
+//         general: "General Interest",
+//       },
+//       ideaCategory: "Idea Category (Optional)",
+//       categories: {
+//         entrepreneurship: "Entrepreneurship",
+//         tech: "Technology",
+//         education: "Education",
+//         environment: "Environment",
+//         other: "Other",
+//       },
+//       message: "Message (Optional)",
+//       submit: "Submit Application",
+//       languageButton: "العربية",
+//       successMessage: "Thank you for registering! We'll contact you soon.",
+//       validation: {
+//         required: "This field is required",
+//         email: "Invalid email address",
+//       },
+//       emailExistsError: "Email already registered! Please use another one.", // Error message for email
+//     },
+//   };
+
+//   const onSubmit = async (data) => {
+//     setIsSubmitting(true);
+//     try {
+//       const response = await axios.post("https://fikra-market.vercel.app/api/register", data, {
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//       });
+
+//       // إذا كانت الاستجابة تحتوي على رسالة تفيد بوجود البريد الإلكتروني
+//       if (response.data && response.data.error === "email_exists") {
+//         toast.error(content[language].emailExistsError); // عرض رسالة التوست
+//         throw new Error(content[language].emailExistsError);
+//       }
+
+//       setSubmitSuccess(true);
+//       reset();
+//     } catch (error) {
+//       console.error("Submission error:", error);
+//       alert(error.message); // يمكنك استبدال هذا بمكون مخصص لعرض الأخطاء
+//     } finally {
+//       setIsSubmitting(false);
+//     }
+//   };
+
+//   if (submitSuccess) {
+//     return (
+//       <div
+//         className={`min-h-screen bg-gradient-to-br from-indigo-600 via-purple-700 to-pink-600 text-white flex items-center justify-center p-4 ${
+//           language === "ar" ? "font-arabic" : "font-sans"
+//         }`}
+//       >
+//         <div className="relative max-w-2xl w-full bg-white bg-opacity-10 backdrop-blur-lg p-8 md:p-12 rounded-3xl shadow-2xl text-center border border-white border-opacity-20">
+//           <Button
+//             onClick={toggleLanguage}
+//             className="absolute top-4 left-4 bg-white text-indigo-700 px-4 py-2 rounded-full text-sm font-medium hover:bg-indigo-100 transition-colors duration-300 shadow-md mb-6" // أضفت mb-6 هنا
+//           >
+//             {content[language].languageButton}
+//           </Button>
+//           <h2 className="text-2xl md:text-3xl font-bold mb-6">
+//             {content[language].successMessage}
+//           </h2>
+//           <button
+//             onClick={() => setSubmitSuccess(false)}
+//             className="mt-6 bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 text-white px-6 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300"
+//           >
+//             {language === "ar" ? "إرسال طلب آخر" : "Submit Another Request"}
+//           </button>
+//         </div>
+//       </div>
+//     );
+//   }
+
+//   return (
+//     <div
+//       className={`min-h-screen bg-gradient-to-br from-indigo-600 via-purple-700 to-pink-600 text-white flex items-center justify-center p-4 ${
+//         language === "ar" ? "font-arabic" : "font-sans"
+//       }`}
+//     >
+//       <div className="relative max-w-2xl w-full bg-white bg-opacity-10 backdrop-blur-lg p-8 md:p-12 rounded-3xl shadow-2xl text-center border border-white border-opacity-20">
+//         <button
+//           onClick={toggleLanguage}
+//           className="absolute top-4 left-4 bg-white text-indigo-700 px-4 py-2 rounded-full text-sm font-medium hover:bg-indigo-100 transition-colors duration-300 shadow-md"
+//         >
+//           {content[language].languageButton}
+//         </button>
+
+//         <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-6 pt-6">
+//           {content[language].title}
+//         </h1>
+//         <p className="mb-8 text-lg opacity-90">
+//           {content[language].description}
+//         </p>
+
+//         <form onSubmit={handleSubmit(onSubmit)} className="text-left space-y-6">
+//           {/* باقي الكود هنا... */}
+//         </form>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default RegisterPage;
+
+
+
+
+
+
+
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useLanguage } from "./Context/userContext";
 import Button from "./components/Button";
-import { toast } from "react-toastify"; // استيراد مكتبة التوست
-import "react-toastify/dist/ReactToastify.css"; // استيراد استايلات التوست
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RegisterPage = () => {
   const { language, toggleLanguage } = useLanguage();
@@ -355,7 +527,8 @@ const RegisterPage = () => {
         required: "هذا الحقل مطلوب",
         email: "البريد الإلكتروني غير صحيح",
       },
-      emailExistsError: "البريد الإلكتروني مسجل بالفعل! يرجى استخدام بريد آخر.", // رسالة الخطأ الخاصة بالبريد الإلكتروني
+      emailExistsError: "البريد الإلكتروني مسجل بالفعل! يرجى استخدام بريد آخر.",
+      serverError: "حدث خطأ في الخادم. يرجى المحاولة مرة أخرى.",
     },
     en: {
       title: "Register for Early Access to Fikra Market",
@@ -385,30 +558,73 @@ const RegisterPage = () => {
         required: "This field is required",
         email: "Invalid email address",
       },
-      emailExistsError: "Email already registered! Please use another one.", // Error message for email
+      emailExistsError: "Email already registered! Please use another one.",
+      serverError: "Server error occurred. Please try again.",
     },
   };
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     try {
-      const response = await axios.post("https://fikra-market.vercel.app/api/register", data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await axios.post(
+        "https://fikra-market.vercel.app/api/register",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      // إذا كانت الاستجابة تحتوي على رسالة تفيد بوجود البريد الإلكتروني
-      if (response.data && response.data.error === "email_exists") {
-        toast.error(content[language].emailExistsError); // عرض رسالة التوست
-        throw new Error(content[language].emailExistsError);
+      if (response.status === 201) {
+        toast.success(content[language].successMessage, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setSubmitSuccess(true);
+        reset();
       }
-
-      setSubmitSuccess(true);
-      reset();
     } catch (error) {
       console.error("Submission error:", error);
-      alert(error.message); // يمكنك استبدال هذا بمكون مخصص لعرض الأخطاء
+      
+      if (error.response) {
+        if (error.response.status === 400 && error.response.data.error === "Email already registered.") {
+          toast.error(content[language].emailExistsError, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        } else {
+          toast.error(error.response.data.error || content[language].serverError, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
+      } else {
+        toast.error(content[language].serverError, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -424,7 +640,7 @@ const RegisterPage = () => {
         <div className="relative max-w-2xl w-full bg-white bg-opacity-10 backdrop-blur-lg p-8 md:p-12 rounded-3xl shadow-2xl text-center border border-white border-opacity-20">
           <Button
             onClick={toggleLanguage}
-            className="absolute top-4 left-4 bg-white text-indigo-700 px-4 py-2 rounded-full text-sm font-medium hover:bg-indigo-100 transition-colors duration-300 shadow-md mb-6" // أضفت mb-6 هنا
+            className="absolute top-4 left-4 bg-white text-indigo-700 px-4 py-2 rounded-full text-sm font-medium hover:bg-indigo-100 transition-colors duration-300 shadow-md mb-6"
           >
             {content[language].languageButton}
           </Button>
@@ -464,7 +680,108 @@ const RegisterPage = () => {
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)} className="text-left space-y-6">
-          {/* باقي الكود هنا... */}
+          <div>
+            <label htmlFor="fullName" className="block mb-2 font-medium">
+              {content[language].fullName}
+            </label>
+            <input
+              id="fullName"
+              type="text"
+              {...register("fullName", { required: true })}
+              className="w-full px-4 py-3 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-300"
+            />
+            {errors.fullName && (
+              <p className="mt-1 text-red-300">
+                {content[language].validation.required}
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="email" className="block mb-2 font-medium">
+              {content[language].email}
+            </label>
+            <input
+              id="email"
+              type="email"
+              {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
+              className="w-full px-4 py-3 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-300"
+            />
+            {errors.email && (
+              <p className="mt-1 text-red-300">
+                {errors.email.type === "required"
+                  ? content[language].validation.required
+                  : content[language].validation.email}
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="userType" className="block mb-2 font-medium">
+              {content[language].userType}
+            </label>
+            <select
+              id="userType"
+              {...register("userType", { required: true })}
+              className="w-full px-4 py-3 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-300"
+            >
+              <option value="">{language === "ar" ? "اختر نوع المستخدم" : "Select user type"}</option>
+              {Object.entries(content[language].userTypes).map(([value, label]) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+            {errors.userType && (
+              <p className="mt-1 text-red-300">
+                {content[language].validation.required}
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="ideaCategory" className="block mb-2 font-medium">
+              {content[language].ideaCategory}
+            </label>
+            <select
+              id="ideaCategory"
+              {...register("ideaCategory")}
+              className="w-full px-4 py-3 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-300"
+            >
+              <option value="">{language === "ar" ? "اختر فئة الفكرة" : "Select idea category"}</option>
+              {Object.entries(content[language].categories).map(([value, label]) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="message" className="block mb-2 font-medium">
+              {content[language].message}
+            </label>
+            <textarea
+              id="message"
+              {...register("message")}
+              rows="4"
+              className="w-full px-4 py-3 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-300"
+            ></textarea>
+          </div>
+
+          <div className="pt-4">
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 text-white px-6 py-4 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
+            >
+              {isSubmitting
+                ? language === "ar"
+                  ? "جاري الإرسال..."
+                  : "Submitting..."
+                : content[language].submit}
+            </button>
+          </div>
         </form>
       </div>
     </div>
