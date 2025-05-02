@@ -576,7 +576,7 @@ const RegisterPage = () => {
         }
       );
 
-      if (response.status === 201) {
+      if (response.status === 201 || response.status === 200) {
         toast.success(content[language].successMessage, {
           position: "top-right",
           autoClose: 5000,
