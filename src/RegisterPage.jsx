@@ -79,7 +79,7 @@ const RegisterPage = () => {
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     try {
-      const response = await axios.post("https://fikra-market.vercel.app/api/register", data, {
+      const response = await axios.post("http://34.201.76.148:8080/api/register", data, {
         headers: {
           "Content-Type": "application/json",
         },
