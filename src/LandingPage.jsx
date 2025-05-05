@@ -1,3 +1,7 @@
+
+
+
+
 import React, { useEffect, useState } from "react";
 import Button from "./components/Button";
 import { Link } from "react-router-dom";
@@ -14,7 +18,6 @@ export default function LandingPage() {
 
   useEffect(() => {
     const targetDate = new Date("2025-08-30T08:01:45.978+00:00");
-    const startDate = new Date("2025-04-30T08:01:45.978+00:00");
 
     const updateCountdown = () => {
       const now = new Date();
@@ -40,6 +43,8 @@ export default function LandingPage() {
       description:
         "جهّزوا أنفسكم! العد التنازلي لإطلاق المستقبل قد بدأ! نحن نوثّق أفكاركم بحماية تقنية البلوك تشين وتشفير 256 بت، ونربطكم مع مستثمرين حقيقيين لتحويل أفكاركم إلى واقع ملموس.",
       cta: "استعدوا للابتكار! ⚡",
+      promo:
+        "فكرتك تستحق الانطلاق – واشتراكك علينا! أول 1000 مبتكر يحصل على اشتراك مجاني لمدة 3 أشهر + أولوية الظهور للمستثمرين. سجّل الآن وابدأ رحلتك من فكرة إلى شركة.",
       SignButton: "سجل الآن",
       days: "أيام",
       hours: "ساعات",
@@ -55,14 +60,15 @@ export default function LandingPage() {
       description:
         "Get ready! The countdown to the future has begun! We protect your ideas with blockchain technology and 256-bit encryption, and connect you with real investors to turn your ideas into reality.",
       cta: "Get Ready to Innovate! ⚡",
+      promo:
+        "Your Idea Deserves to Take Off – And We’re Sponsoring It! The first 1,000 innovators get 3 months of free access + priority exposure to investors. Sign up now and start your journey from idea to startup.",
       SignButton: "Sign Up Now",
       days: "Days",
       hours: "Hours",
       minutes: "Minutes",
       seconds: "Seconds",
       emailPlaceholder: "Enter your email address",
-      buttonText:
-        "Be the first to know about the launch, register your email now.",
+      buttonText: "Be the first to know about the launch, register your email now.",
       languageButton: "العربية",
     },
   };
@@ -90,9 +96,13 @@ export default function LandingPage() {
           {content[language].description}
         </p>
 
-        <h2 className="mt-8 text-2xl md:text-3xl font-semibold mb-8">
+        <h2 className="mt-8 text-2xl md:text-3xl font-semibold mb-4">
           {content[language].cta}
         </h2>
+
+        <p className="text-base md:text-lg leading-relaxed font-medium text-yellow-100 mb-6">
+          {content[language].promo}
+        </p>
 
         <div className="mt-8 grid grid-cols-4 gap-4 text-center max-w-md mx-auto">
           {Object.entries(timeLeft).map(([unit, value]) => (
@@ -100,8 +110,7 @@ export default function LandingPage() {
               key={unit}
               className="bg-white bg-opacity-15 p-4 rounded-xl backdrop-blur-sm"
             >
-              <div className="text-xl md:text-2xl font-bold">{value}</div>{" "}
-              {/* تم تصغير الخط هنا */}
+              <div className="text-xl md:text-2xl font-bold">{value}</div>
               <div className="text-sm md:text-base mt-2 opacity-90">
                 {content[language][unit]}
               </div>
@@ -118,7 +127,7 @@ export default function LandingPage() {
           </Link>
           <Button
             onClick={toggleLanguage}
-            className="absolute top-4 left-4 bg-white text-indigo-700 px-4 py-2 rounded-full text-sm font-medium hover:bg-indigo-100 transition-colors duration-300 shadow-md mb-6" // أضفت mb-6 هنا
+            className="absolute top-4 left-4 bg-white text-indigo-700 px-4 py-2 rounded-full text-sm font-medium hover:bg-indigo-100 transition-colors duration-300 shadow-md mb-6"
           >
             {content[language].languageButton}
           </Button>
@@ -126,28 +135,31 @@ export default function LandingPage() {
 
         <div className="mt-12 flex flex-wrap justify-center gap-4 text-sm md:text-base">
           <a
-            href="support@fikramarkets.com"
+            href="mailto:support@fikramarkets.com"
             className="hover:underline hover:text-orange-300 transition-colors duration-200"
           >
             support@fikramarkets.com
           </a>
           <a
             href="https://www.instagram.com/fikramarkets/"
-            target="blank"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hover:underline hover:text-orange-300 transition-colors duration-200"
           >
             Instagram
           </a>
           <a
             href="https://www.facebook.com/fikramarkerts/"
-            target="blank"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hover:underline hover:text-orange-300 transition-colors duration-200"
           >
             Facebook
           </a>
           <a
             href="https://t.me/fikramarkets"
-            target="blank"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hover:underline hover:text-orange-300 transition-colors duration-200"
           >
             Telegram
