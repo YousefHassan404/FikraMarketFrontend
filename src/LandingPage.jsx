@@ -69,6 +69,7 @@ export default function LandingPage() {
 
   return (
     <div
+      dir={language === "ar" ? "rtl" : "ltr"}
       className={`min-h-screen bg-gradient-to-br from-indigo-600 via-purple-700 to-pink-600 text-white flex items-center justify-center p-4 ${
         language === "ar" ? "font-arabic" : "font-sans"
       }`}
