@@ -79,7 +79,7 @@ const RegisterPage = () => {
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     try {
-      const response = await axios.post("https://fikramarkets.com/api/api/register", data, {
+      const response = await axios.post("https://fikramarkets.com/api/register", data, {
         headers: {
           "Content-Type": "application/json",
         },
