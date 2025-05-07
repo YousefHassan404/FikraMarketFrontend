@@ -79,7 +79,7 @@ const RegisterPage = () => {
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     try {
-      const response = await axios.post("http://54.152.218.81:8080/api/register", data, {
+      const response = await axios.post("http://54.87.27.217:8080/api/register", data, {
         headers: {
           "Content-Type": "application/json",
         },
