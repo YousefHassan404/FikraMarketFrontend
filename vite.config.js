@@ -6,6 +6,6 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port:5173,
-    allowedHosts: ['fikramarkets.com','www.fikramarkets.com'], // ✅ إضافة مسموحة في Vite 5
+    allowedHosts: ['fikramarkets.com','www.fikramarkets.com'], 
   },
 })
