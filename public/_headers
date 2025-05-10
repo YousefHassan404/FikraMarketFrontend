@@ -1,23 +1,35 @@
 /*
+  # الأمان الأساسي
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   X-XSS-Protection: 1; mode=block
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; object-src 'none';
-  Referrer-Policy: no-referrer
-  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Permissions-Policy: accelerometer=(), autoplay=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
-  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
-  X-Content-Security-Policy: script-src 'self'; object-src 'none';
-  X-Download-Options: noopen
-  X-Permitted-Cross-Domain-Policies: none
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), microphone=(), payment=(), usb=()
 
-  # تم إزالة ETag لحماية معلومات النظام:
-  ETag: ""
+  # حماية محتوى متقدمة (CSP)
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' https:; connect-src 'self' https:; frame-ancestors 'none'; form-action 'self'; base-uri 'self'
 
-  # Access-Control-Allow-Origin يمكن تحديدها بشكل آمن بدلاً من "*"
+  # التحكم في CORS (استبدل yourdomain.com بالنطاق الفعلي)
   Access-Control-Allow-Origin: https://yourdomain.com
   Access-Control-Allow-Methods: GET, POST, OPTIONS
-  Access-Control-Allow-Headers: Content-Type, Authorization
+  Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With
+  Access-Control-Allow-Credentials: true
+  Access-Control-Max-Age: 86400
 
-  # تعطيل الضغط deflate في إعدادات السيرفر وليس من خلال الهيدر (مهم للأمان)
-*/
+  # إعدادات HTTPS والذاكرة المؤقتة
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+  # إعدادات إضافية
+  X-Download-Options: noopen
+  X-Permitted-Cross-Domain-Policies: none
+  Cross-Origin-Embedder-Policy: require-corp
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+
+  # إزالة معلومات السيرفر (اختياري)
+  Server: Netlify
+  X-Powered-By: 
+  X-Netlify-Edge: 
