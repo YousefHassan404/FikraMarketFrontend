@@ -52,7 +52,7 @@ export default function LandingPage() {
       seconds: "ثواني",
       emailPlaceholder: "أدخل بريدك الإلكتروني",
       buttonText: "كن أول من يعرف بالإطلاق، سجل بريدك الإلكتروني الآن.",
-      languageButton: "English",
+      languageButton: "eng",
     },
     en: {
       title:
@@ -69,7 +69,7 @@ export default function LandingPage() {
       seconds: "Seconds",
       emailPlaceholder: "Enter your email address",
       buttonText: "Be the first to know about the launch, register your email now.",
-      languageButton: "العربية",
+      languageButton: "عربي",
     },
   };
 
